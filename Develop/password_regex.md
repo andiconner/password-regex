@@ -23,7 +23,7 @@ Password requirements:
 This is the regular expression for the Password:
 `/^(?=.*?[A-Za-z0-9])(?=.*?[#?!@$%^&*-]).{8,12}$/`
 
-See below each regex component explanation to understand how to come up with this regex.
+See below each regex component explanation to understand how we came up with this regex.
 
 
 ## Table of Contents
@@ -33,6 +33,8 @@ See below each regex component explanation to understand how to come up with thi
 - [Character Classes](#character-classes)
 - [Bracket Expressions](#bracket-expressions)
 - [Greedy and Lazy Match](#greedy-and-lazy-match)
+- [Positive Lookahead](#positive-lookahead)
+- [Test it](#test-it)
 
 ## Regex Components
 
@@ -79,11 +81,17 @@ Greedy matches as many occurrences of particular patterns as possible. They incl
 
 `{ n, x }` — Matches the pattern from a minimum of n number of times to a maximum of x number of times
 
-Each of these quantifiers `can be made lazy by adding the ? symbol after it`, meaning it will match as few occurrences as possible.
+Each of these quantifiers `can be made lazy by adding the ? symbol after it`, meaning it will match as few occurrences as possible. (?=.*`?`[A-Z])
 
-For the password regex, we had to use a combination `(?=.*?)` of Greedy, Lazy Match and a Character Class to be able to follow the password requirements for "at least" one uppercase letter `(?=.*?[A-Z])` /lowercase letter `(?=.*?[a-z])`/number `(?=.*?[0-9])`/special character `(?=.*?[#?!@$%^&*-])`
+For the password regex, we had to use a combination (?=`.*?)` of Greedy, Lazy Match and a Character Class to be able to follow the password requirements for "at least" one uppercase letter `(?=.*?[A-Z])` /lowercase letter `(?=.*?[a-z])`/number `(?=.*?[0-9])`/special character `(?=.*?[#?!@$%^&*-])`
 
+### Positive Lookahead
+Lookahead and lookbehind, collectively called “lookaround”, are zero-length assertions just like the start and end of line or word anchors. The difference is that lookaround actually matches characters, but then gives up the match, returning only the result: match or no match. 
+The positive lookahead construct is a pair of parentheses, with the opening parenthesis followed by a question mark and an equals sign. In our regex we can find the positive lookahead:`(?=`.*?[A-Za-z0-9]) and `(?=`.*?[#?!@$%^&*-]). Matches a group after the main expression without including it in the result.
 
+### Test it
+You can test this regex by going to [regexr.com](https://regexr.com/6faq1)
+ 
 
 ## Author 
 Andi Conner is a fullstack boot camp student at UCF. You can find more of her work at her gitub profile page: https://github.com/andiconner
